@@ -1,0 +1,30 @@
+ {# {% set nb_books_total=0 %} #}
+{% if authors is defined  %}
+{% if authors is empty %}
+  <h1>pas d'auteurs</h1>
+{% else %}
+<table>
+<caption>Authors </caption>
+<tr><th>id</th><th>picture</th><th>username</th><th>email</th><th>nb_books</th><th>details</th></tr>
+ 
+   {% for author in authors %}
+   {# {% set nb_books_total=nb_books_total+author.nb_books %} #}
+    
+    <tr>
+    <td>{{author.id}}</td>
+    {# <td><img src="{{asset(author.picture)}}"></img></td> #}
+    <td>{{author.username| upper}}</td>
+    <td>{{author.email}}</td>
+    {# <td>{{author.nb_books}}</td>
+    <td><a href={{path('app_details_author',{'id':author.id})}} >click ici</a></td> #}
+    </tr>
+    {% endfor %}
+</table>
+{% endif %}
+{%else%}
+<h1> tableau non defini </h1>
+{% endif %}
+
+
+{# <div>le nobre total des livres {{nb_books_total}} </div><br> #}
+Le nombre d'auteur est : {{authors | length}}
